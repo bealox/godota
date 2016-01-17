@@ -57,7 +57,7 @@ type (
 func (t *Team) GetJSON() error {
 
 	t.Dota2ParentAPI.URL = t.getURL()
-
+	//https://api.steampowered.com/IDOTA2Match_570/GetTeamInfoByTeamID/v001/?key=?&start_at_team_id=543897&teams_requested=1
 	b, err := t.getData()
 
 	if err != nil {
@@ -87,8 +87,8 @@ func (t *Team) getJSON() error {
 func (a *Team) getURL() string {
 	v := url.Values{}
 	v.Add("key", apiKey)
-	v.Add("language", "en_us")
 	v.Add("start_at_team_id", strconv.FormatInt(a.TeamID, 10))
+	v.Add("teams_requested", "1")
 	return "https://api.steampowered.com/IDOTA2Match_570/GetTeamInfoByTeamID/v001/?" + v.Encode()
 }
 

@@ -33,20 +33,7 @@ type (
 )
 
 //GetJSON retrieve JSON from the Dota2 API
-//
-//A trivial example server is::
-// package main
-//func main(){
-// hero := &Hero{}
-// err = hero.GetJSON()
-// if err != nil {
-// 	t.Error("Unable to get JSON from API ", err)
-// }
-//
-// if hero.JSON.Result.Status != 200 {
-// 	t.Error("Unable to get JSON status: ", hero.JSON.Result.Status)
-// }
-//}
+
 func (h *Hero) GetJSON() error {
 
 	h.Dota2ParentAPI.URL = h.getURL()
@@ -84,24 +71,6 @@ func (h *Hero) getURL() string {
 }
 
 //StoreHeroImage stores hero's portrait from the API into a directory
-//
-//A trivial example of getting Image:
-// pwd, err := os.Getwd()
-// if err != nil {
-// 	t.Error("unable to reach your current pwd ", err)
-// }
-//
-//
-// err = StoreHeroImage("npc_dota_hero_antimage", pwd+"/heroes/")
-//
-// if err != nil {
-// 	t.Error("unable to store the image ", err)
-// }
-// _, err = os.Open(pwd + "/heroes/antimage_sb.png")
-//
-// if err != nil {
-// 	t.Error("unable to get the file ", err)
-// }
 func StoreHeroImage(dotaName string, dir string) error {
 	//small horizontal portrait - 59x33px sb.png
 	//large horizontal portrait - 205x11px lg.png
