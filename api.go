@@ -34,6 +34,7 @@ func (h *Dota2ParentAPI) getData() ([]byte, error) {
 	return ioutil.ReadAll(read.Body)
 }
 
+//RemoveContents This is mainly for testing purpose, remove all the files before store the imges again
 func RemoveContents(dir string) error {
 	d, err := os.Open(dir)
 	if err != nil {

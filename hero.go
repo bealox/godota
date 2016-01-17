@@ -11,13 +11,12 @@ import (
 )
 
 type (
-	//Hero is the structure
 	Hero struct {
 		Dota2ParentAPI
 		JSON *HeroContent
 	}
 
-	//HeroContent is the json structure we are getting from dota2 api
+	//HeroContent is the json format for hero.
 	HeroContent struct {
 		Result struct {
 			Hereos []gHeroesInfo `json:"heroes"`
@@ -33,7 +32,19 @@ type (
 	}
 )
 
-//GetJSON retrieve JSON from the API
+//GetJSON retrieve JSON from the Dota2 API
+//
+//A trivial example of getting Hero's JSON:
+//
+// hero := &Hero{}
+// err = hero.GetJSON()
+// if err != nil {
+// 	t.Error("Unable to get JSON from API ", err)
+// }
+//
+// if hero.JSON.Result.Status != 200 {
+// 	t.Error("Unable to get JSON status: ", hero.JSON.Result.Status)
+// }
 func (h *Hero) GetJSON() error {
 
 	h.Dota2ParentAPI.URL = h.getURL()
@@ -70,7 +81,25 @@ func (h *Hero) getURL() string {
 	return "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?" + v.Encode()
 }
 
-//StoreImage store images from the API
+//StoreHeroImage stores hero's portrait from the API into a directory
+//
+//A trivial example of getting Image:
+// pwd, err := os.Getwd()
+// if err != nil {
+// 	t.Error("unable to reach your current pwd ", err)
+// }
+//
+//
+// err = StoreHeroImage("npc_dota_hero_antimage", pwd+"/heroes/")
+//
+// if err != nil {
+// 	t.Error("unable to store the image ", err)
+// }
+// _, err = os.Open(pwd + "/heroes/antimage_sb.png")
+//
+// if err != nil {
+// 	t.Error("unable to get the file ", err)
+// }
 func StoreHeroImage(dotaName string, dir string) error {
 	//small horizontal portrait - 59x33px sb.png
 	//large horizontal portrait - 205x11px lg.png
