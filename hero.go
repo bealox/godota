@@ -35,7 +35,8 @@ type (
 //GetJSON retrieve JSON from the Dota2 API
 //
 //A trivial example of getting Hero's JSON:
-//
+// package main
+//func main(){
 // hero := &Hero{}
 // err = hero.GetJSON()
 // if err != nil {
@@ -45,6 +46,7 @@ type (
 // if hero.JSON.Result.Status != 200 {
 // 	t.Error("Unable to get JSON status: ", hero.JSON.Result.Status)
 // }
+//}
 func (h *Hero) GetJSON() error {
 
 	h.Dota2ParentAPI.URL = h.getURL()
