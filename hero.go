@@ -34,7 +34,7 @@ type (
 
 //GetJSON retrieve JSON from the Dota2 API
 //
-//A trivial example of getting Hero's JSON:
+//A trivial example server is::
 // package main
 //func main(){
 // hero := &Hero{}
